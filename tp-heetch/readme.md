@@ -19,3 +19,8 @@
 # things
 - il y a plusieurs types de geometrie
 - tj voir les types des colonnes
+- sur le projet, l'info est trop fine. Il faudra mailler (carrouiller) et aggreger avec le package sf
+- toutes les fonctions du package sf commencent par st 
+
+# questions
+- geometrie MULTIPOLYGON; c'est quoi? c'est quoi les autres? 

@@ -49,3 +49,42 @@ leaflet() %>%
 # count nb of drivers ----
 nb_drivers <- heetch_points$driver_id %>% unique() %>% length()
 nb_drivers #1309
+
+# extract day and hour
+first_date <- heetch_points$location_at_local_time[1]
+  # create 2 columns (day, hour)
+heetch_points$day <- day(heetch_points$location_at_local_time)
+heetch_points$hour <- hour(heetch_points$location_at_local_time)
+head(heetch_points)
+
+# extract data on the first day
+heetch_day1 <- heetch_points %>% 
+                filter(day == 1)
+heetch_day1
+#plot(heetch_day1$geometry)  
+plot(heetch_day1$geometry, pch=21, cex=0.4) #parametrer le symbole et sa taille
+
+# do a grid for aggregation 
+casa_grid = st_make_grid(casaBound) # une grille sur l'emprise de casabound
+plot(casa_grid) # plot the grid
+plot(casaBound$geometry, add=TRUE) # add another plot 
+
+# count the nb the point per cell
+  # method 1: est-ce que les cellules(carreaux) contiennent les points
+inter_grid = st_contains(x = casa_grid, y=heetch_day1) #la grille et les points 
+inter_grid[72] #le carreau 72 est vide
+inter_grid[73] #il va afficher les indexations des points: 882
+ii <- inter_grid[73]
+ii
+
+# create dataframe (cell_id, nb_of_points, geometry_of_the_cell)
+list_lengths_per_cell = sapply(X = inter_grid, FUN = length)
+casagrid_points = st_sf(ID_GRID = 1:100,
+                        NB_POINTS = list_lengths_per_cell,
+                        geometry = casa_grid)
+casagrid_points
+
+#suite 
+  # voir les densites de points
+  # ds vitesses moyennes, tout ce qui resume de l'information
+  # travailler sur des troncons plutot que tous les points des routes
