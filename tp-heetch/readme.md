@@ -8,6 +8,8 @@
 - find the code [here](data/heetch_casablanca.html)
 
 # remember
-atl + - --> def de varible
-TAb --> autocompletet
-ctl ENter --> run
+- run: **CTRL ENter**
+- autocompletet: **TAB**
+- def de varible: **ALT +**
+- operateur de chainage: **CTLR SHIFT M**
+
