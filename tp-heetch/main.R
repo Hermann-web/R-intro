@@ -37,3 +37,6 @@ leaflet() %>%
   addCircles(data = osmFeatures$tramstop, 
              color = "black",
              label = osmFeatures$tramstop$name)
+
+# load hetchpoints 
+heetch_points <- readRDS("data/heetchmarchcrop.Rds")

@@ -1,0 +1,17 @@
+# list of projets
+- 1: savoir quel est la diff de trafic entre tel jour et tel autre: trafic = fct(temps)
+
+- 3: evaluer la congestion (calculer des vitesses et leurs variations = fct(temps))
+
+- 6: detection de domicile 
+
+- 4: mieux connaitre les chauffeurs Heetch; combien d'heures, quelles territoires : indicateurs sur les chauffeurs
+
+- 5: un concurent veut savoir comment performe les chaufeurs Heetch; combien debaucher
+
+- 7: 
+    - contexte: tarification incitative (faire monter le prix pour inciter les chauffeurs à venir quand il y a beaucoup de gens): 
+    - il faut identifier les fraudeurs et les resistants: des gens par ex qui eteignent leurr app pour faire flamber les prix
+    - ex: des chauffeurs qui a des moments, se retrouvent tous à un endroit
+
+- 2: trouver les flux principaux (nord-ouest, sud-ouest, tout-centre, ...)
