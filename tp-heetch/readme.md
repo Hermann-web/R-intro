@@ -38,11 +38,15 @@
     - choix de palette
         - intensite -> palette sequentielle
         - variable categorielle -> palette qualitative
-        - 
+- bons packages de cart
+    - mapof: static
+    - tmap: static
+    - leaflet: dynamic
 
 # Ressources
 - R cheat: [rpubs.com](https://www.rpubs.com/Bentley_87/542213), [iqss.github.io](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
 - [view doc on a package](https://cran.r-project.org/web/packages/dplyr/index.html)
+- [palette de couleurs sur R](https://blog.r-project.org/2019/04/01/hcl-based-color-palettes-in-grdevices/)
 
 # questions
 - geometrie MULTIPOLYGON; c'est quoi? c'est quoi les autres? 

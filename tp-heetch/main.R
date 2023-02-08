@@ -73,31 +73,6 @@ str(heetch_sample)
 #plot(heetch_sample$geometry)  
 plot(heetch_sample$geometry, pch=21, cex=0.4) #parametrer le symbole et sa taille
 
-# do a grid for aggregation 
-casa_grid = st_make_grid(casaBound) # une grille sur l'emprise de casabound
-plot(casa_grid) # plot the grid
-plot(casaBound$geometry, add=TRUE) # add another plot 
-
-# count the nb the point per cell
-  # method 1: est-ce que les cellules(carreaux) contiennent les points
-inter_grid = st_contains(x = casa_grid, y=heetch_sample) #la grille et les points 
-inter_grid[72] #le carreau 72 est vide
-inter_grid[73] #il va afficher les indexations des points: 882
-ii <- inter_grid[73]
-ii
-
-# create dataframe (cell_id, nb_of_points, geometry_of_the_cell)
-list_lengths_per_cell = sapply(X = inter_grid, FUN = length)
-casagrid_points = st_sf(ID_GRID = 1:100,
-                        NB_POINTS = list_lengths_per_cell,
-                        geometry = casa_grid)
-casagrid_points
-
-#suite 
-  # voir les densites de points
-  # ds vitesses moyennes, tout ce qui resume de l'information
-  # travailler sur des troncons plutot que tous les points des routes
-
 
 # groupby
 ff <- heetch_sample %>% 
@@ -111,3 +86,34 @@ class(ff)
 str(ff)
 nrow((ff))
 head(ff)
+
+
+# do a grid for aggregation 
+casa_grid = st_make_grid(casaBound) # une grille sur l'emprise de casabound
+plot(casa_grid) # plot the grid
+plot(casaBound$geometry, add=TRUE) # add another plot 
+class(casa_grid)
+# count the nb the point per cell
+  # method 1: est-ce que les cellules(carreaux) contiennent les points
+inter_grid = st_contains(x = casa_grid, y=heetch_sample) #la grille et les points 
+inter_grid[72] #le carreau 72 est vide
+inter_grid[73] #il va afficher les indexations des points: 882
+ii <- inter_grid[73]
+ii
+
+
+# create dataframe (cell_id, nb_of_points, geometry_of_the_cell)
+list_lengths_per_cell = sapply(X = inter_grid, FUN = length)
+casagrid_points = st_sf(ID_GRID = 1:100,
+                        NB_POINTS = list_lengths_per_cell,
+                        geometry = casa_grid)
+casagrid_points
+class(casagrid_points)
+
+#suite 
+  # voir les densites de points
+  # ds vitesses moyennes, tout ce qui resume de l'information
+  # travailler sur des troncons plutot que tous les points des routes
+
+
+
