@@ -1,6 +1,11 @@
 # list of projets
 
 - 1: **rythmes urbains (cmd public)**: savoir quel est la diff de trafic entre tel jour et tel autre: trafic = fct(temps)
+    - quartier vs carr..
+    - a vs b
+        - jour vs nuit 
+        - semaine vs week-end
+    - tools: OD(avsb), cartes(avsb)
 
 - 3: **congestion**: evaluer la congestion (calculer des vitesses et leurs variations = fct(temps))
 
@@ -16,3 +21,4 @@
     - ex: des chauffeurs qui a des moments, se retrouvent tous à un endroit
 
 - 2: **structure urbaines (cmd public)**: trouver les flux principaux (nord-ouest, sud-ouest, tout-centre, ...)
+

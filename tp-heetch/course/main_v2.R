@@ -120,12 +120,22 @@ nrow(main_neib) #4834
 
 # pivot table to have driver as index and hour as columns
 main_neib_pivot <- main_neib %>% 
+  select(driver_id, hour, NEIB) %>% 
   tidyr::pivot_wider(names_from = hour,
                      values_from = NEIB,
                      names_prefix="H",
                      values_fill=NA
                      )
 class(main_neib_pivot) #NB_POINTS,H22, H21, H20, H19, ...
-head(main_neib_pivot)? H
+head(main_neib_pivot)
 nrow(main_neib_pivot) #4834
 
+# 
+# # for each neib and hour, getthe nb of points
+# 
+# # barycentre d'yun nuage de points
+# the_drivers %>% st_union() %>% st_centroid()
+# 
+# for (i in the_drivers) {
+#   one_driver <- the_drivers %>% filter(driver_id==i)
+# }
