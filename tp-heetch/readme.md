@@ -16,11 +16,11 @@
 - operateur de chainage: **CTLR SHIFT M**
 
 # read/writes files
-- sf: st_read()
-- csv: read.csv(), write.csv()
-- xlsx: read.xlsx(), write.xlsx() 
-- table: read.table(), write.table()
-- rds: readRDS(), writeRDS()
+- **sf**: st_read()
+- **csv**: read.csv(), write.csv()
+- **xlsx**: read.xlsx(), write.xlsx() 
+- **table**: read.table(), write.table()
+- **rds**: readRDS(), writeRDS()
 
 # things
 - il y a plusieurs types de geometrie
@@ -47,6 +47,8 @@
 - R cheat: [rpubs.com](https://www.rpubs.com/Bentley_87/542213), [iqss.github.io](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
 - [view doc on a package](https://cran.r-project.org/web/packages/dplyr/index.html)
 - [palette de couleurs sur R](https://blog.r-project.org/2019/04/01/hcl-based-color-palettes-in-grdevices/)
+- [maps datasets](https://gadm.org/)
+- [openstrretmap](https://www.openstreetmap.org/#map=6/31.885/-7.080)
 
 # questions
 - geometrie MULTIPOLYGON; c'est quoi? c'est quoi les autres? 
