@@ -17,3 +17,6 @@ my_vector <- unlist(list_sum)
 
   # method 2: save the output in a vector instead of a 
 my_vector <- sapply(my_list, FUN=sum)
+
+# sampling ----
+sample(x=1:10, size=30, replace=TRUE) #replace fait un echatillaonage avec remise

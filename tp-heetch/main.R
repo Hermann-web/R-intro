@@ -56,13 +56,22 @@ first_date <- heetch_points$location_at_local_time[1]
 heetch_points$day <- day(heetch_points$location_at_local_time)
 heetch_points$hour <- hour(heetch_points$location_at_local_time)
 head(heetch_points)
+nrow(heetch_points)
+length(heetch_points) #lenght ici c'est nb_col because it is an object like in js
 
 # extract data on the first day
+  # method 1
 heetch_day1 <- heetch_points %>% 
                 filter(day == 1)
-heetch_day1
-#plot(heetch_day1$geometry)  
-plot(heetch_day1$geometry, pch=21, cex=0.4) #parametrer le symbole et sa taille
+heetch_sample <- heetch_day1
+heetch_sample
+  #method 2
+list_index <- sample(x=1:nrow(heetch_points), size=3000, replace=FALSE) #nrows not lenghts
+heetch_sample <- heetch_points[list_index,]
+str(heetch_sample)
+
+#plot(heetch_sample$geometry)  
+plot(heetch_sample$geometry, pch=21, cex=0.4) #parametrer le symbole et sa taille
 
 # do a grid for aggregation 
 casa_grid = st_make_grid(casaBound) # une grille sur l'emprise de casabound
@@ -71,7 +80,7 @@ plot(casaBound$geometry, add=TRUE) # add another plot
 
 # count the nb the point per cell
   # method 1: est-ce que les cellules(carreaux) contiennent les points
-inter_grid = st_contains(x = casa_grid, y=heetch_day1) #la grille et les points 
+inter_grid = st_contains(x = casa_grid, y=heetch_sample) #la grille et les points 
 inter_grid[72] #le carreau 72 est vide
 inter_grid[73] #il va afficher les indexations des points: 882
 ii <- inter_grid[73]

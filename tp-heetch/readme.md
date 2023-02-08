@@ -15,6 +15,12 @@
 - def de varible: **ALT +**
 - operateur de chainage: **CTLR SHIFT M**
 
+# read/writes files
+- sf: st_read()
+- csv: read.csv(), write.csv()
+- xlsx: read.xlsx(), write.xlsx() 
+- table: read.table(), write.table()
+- rds: readRDS(), writeRDS()
 
 # things
 - il y a plusieurs types de geometrie
