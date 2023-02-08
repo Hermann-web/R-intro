@@ -27,6 +27,22 @@
 - tj voir les types des colonnes
 - sur le projet, l'info est trop fine. Il faudra mailler (carrouiller) et aggreger avec le package sf
 - toutes les fonctions du package sf commencent par st 
+- dans R-studio, il y a des cheats
+- faire de la cartographie, c'est essentiellement faire de la couleur
+- some diff
+    - carte statistique: representer visuellement des variations (comme heatmap)
+    - cartographie: just plot
+- regle de carto
+    - l'homme ne distingue que 10,12 nuances d'une même couleur donc discretise les couleurs de ton heatmap, ...
+    - check [colorbrewer](https://colorbrewer2.org) pour les palettes de couleurs
+    - choix de palette
+        - intensite -> palette sequentielle
+        - variable categorielle -> palette qualitative
+        - 
+
+# Ressources
+- R cheat: [rpubs.com](https://www.rpubs.com/Bentley_87/542213), [iqss.github.io](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
+- [view doc on a package](https://cran.r-project.org/web/packages/dplyr/index.html)
 
 # questions
 - geometrie MULTIPOLYGON; c'est quoi? c'est quoi les autres? 

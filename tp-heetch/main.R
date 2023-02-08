@@ -97,3 +97,17 @@ casagrid_points
   # voir les densites de points
   # ds vitesses moyennes, tout ce qui resume de l'information
   # travailler sur des troncons plutot que tous les points des routes
+
+
+# groupby
+ff <- heetch_sample %>% 
+  st_drop_geometry() %>% #remove manually the "columns" geometry because you can't remove it from an sf
+  select(driver_id, day, hour) %>% 
+  group_by(day) %>%  #groupby
+  summarise(NB=n()) %>%  #count by defining a columns NB
+  filter(NB>30) %>% 
+  arrange(NB)
+class(ff)
+str(ff)
+nrow((ff))
+head(ff)
