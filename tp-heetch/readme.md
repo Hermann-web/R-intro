@@ -39,7 +39,7 @@
         - intensite -> palette sequentielle
         - variable categorielle -> palette qualitative
 - bons packages de cart
-    - mapof: static
+    - mapsf: static
     - tmap: static
     - leaflet: dynamic
 

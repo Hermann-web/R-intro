@@ -26,6 +26,7 @@ vect_norm <- rnorm(n=100, mean=50, sd=5)
 hist(vect_norm, col = "blue")
 
 # more on colors ----
+  # add color
 colors() #☻voir les couleurs
 vect_norm <- rnorm(n=100, mean=50, sd=5)
 hist(vect_norm, col = "blue")
@@ -33,3 +34,7 @@ hist(vect_norm, col = rgb(red = 0.2, green=0.2, blue = 0.2, alpha=0.5))
 hist(vect_norm, col = rgb(red = 150, green=200, blue = 50, alpha=0.5, maxColorValue = 255))
 hist(vect_norm, col = "#2596be25")
 
+  # palette de couleurs #
+my_pl <- "Cividis" #https://blog.r-project.org/2019/04/01/hcl-based-color-palettes-in-grdevices/
+list_colors_from_my_palette = hcl.colors(n=5, palette=my_pl)
+list_colors_from_my_palette

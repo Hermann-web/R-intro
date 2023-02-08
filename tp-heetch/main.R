@@ -7,6 +7,7 @@ library(dplyr)
 library(sf) #données géométriques
 library(leaflet) #visualisation
 library(lubridate) #work with times
+library(mapsf) #as leaflet but static
 
 # load data  ----
   # 
@@ -67,8 +68,8 @@ heetch_sample <- heetch_day1
 heetch_sample
   #method 2
 list_index <- sample(x=1:nrow(heetch_points), size=3000, replace=FALSE) #nrows not lenghts
-heetch_sample <- heetch_points[list_index,]
-str(heetch_sample)
+#heetch_sample <- heetch_points[list_index,]
+#str(heetch_sample)
 
 #plot(heetch_sample$geometry)  
 plot(heetch_sample$geometry, pch=21, cex=0.4) #parametrer le symbole et sa taille
@@ -89,10 +90,13 @@ head(ff)
 
 
 # do a grid for aggregation 
-casa_grid = st_make_grid(casaBound) # une grille sur l'emprise de casabound
+casa_grid = st_make_grid(casaBound,
+                         #cellsize = 1000, #mile au us et metre ailleurs
+                         n = c(50,60)
+                         ) # une grille sur l'emprise de casabound #un obj sf
 plot(casa_grid) # plot the grid
 plot(casaBound$geometry, add=TRUE) # add another plot 
-class(casa_grid)
+class(casa_grid) 
 # count the nb the point per cell
   # method 1: est-ce que les cellules(carreaux) contiennent les points
 inter_grid = st_contains(x = casa_grid, y=heetch_sample) #la grille et les points 
@@ -108,12 +112,55 @@ casagrid_points = st_sf(ID_GRID = 1:100,
                         NB_POINTS = list_lengths_per_cell,
                         geometry = casa_grid)
 casagrid_points
-class(casagrid_points)
+class(casagrid_points) #un obj sf et dataf --> cartographiable
 
 #suite 
   # voir les densites de points
   # ds vitesses moyennes, tout ce qui resume de l'information
   # travailler sur des troncons plutot que tous les points des routes
 
+# create a carto ---
+  # beaucoup de carreux en mers (avec nb_points=0) et ça etire la distribution
+casagrid_points_crop = casagrid_points %>% filter(NB_POINTS > 0)
+mf_map(x = casaBound,
+        type = "base")
+mf_map(x=casagrid_points_crop,
+       var = "NB_POINTS",
+       type = "choro",
+       #10 classes d'effectifs egaux pour eviter les pb lies aux outiliers
+       breaks = "quantile",
+       nbreaks = 10,
+       pal = rev(hcl.colors(n=10, palette = "Blues")), #un rev pour fnoce rle pire
+       add = TRUE
+       ) 
 
+hist(casagrid_points$NB_POINTS)
 
+# projection et distance #le 4326, c'est un system en 3 dim avec les angles (longitude, latitud)
+  # identifier le system initial pour pouvoir le transformer #les deux sont du 4326 donc (longitude, latitude)
+st_crs(casaBound)
+st_crs(heetch_points)
+
+  # project into another projection ststem #attention (longit,ltit) -> (x,y)
+heetchpoints_projected <-  st_transform(x=heetch_points, crs=26191)
+class(heetchpoints_projected)
+head(heetchpoints_projected)
+
+  # get a subset of the heetpoints to compute distances
+    #compute distance from all points to all points (1->2, 1->3, 3->1, ....)
+mini_heetch = head(heetchpoints_projected, n=4)
+matric_distances_all_points_to_all_points <- st_distance(x=mini_heetch, y=mini_heetch)
+matric_distances_all_points_to_all_points #c'est en m
+units(matric_distances_all_points_to_all_points) <- "km" #transformer en km
+
+    #compute along a road (x[1]->y[1], 1->2, 2->3, 3->4, ....)
+matric_distances_point_to_point  <- st_distance(x=mini_heetch[1:3,], y=mini_heetch[2:4,], by_element = TRUE)
+matric_distances_point_to_point #
+
+    # compute time laps 
+timelaps_point_to_point  <- mini_heetch$location_at_local_time[2:4] - mini_heetch$location_at_local_time[1:3]
+timelaps_point_to_point #
+
+  # compute "vitesse"
+speed_point_to_point <- matric_distances_point_to_point/timelaps_point_to_point
+speed_point_to_point
