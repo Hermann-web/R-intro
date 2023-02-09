@@ -24,7 +24,7 @@ head(casa_neib)
 proj_crs <- 26191 #code de la proj nord maroc
 casaBound_proj = st_transform(casaBound, crs=proj_crs)
 heetch_points_proj = st_transform(heetch_points, crs=proj_crs)
-casa_neib_proj = st_transform(heetch_points, crs=proj_crs)
+casa_neib_proj = st_transform(casa_neib, crs=proj_crs)
 rm(proj_crs)
 
 # plot data ----
