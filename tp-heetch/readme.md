@@ -1,7 +1,7 @@
 # Objective
 
 # Steps
-- download R and R-studio 
+- download [R](https://cran.r-project.org/) and [R-studio](https://posit.co/download/rstudio-desktop/)
 - create a project 
 - install packages
 - download data from [this link](https://acloud.zaclys.com/index.php/s/ZyXcsF2AgGmMKaJ)
