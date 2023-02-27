@@ -1,0 +1,53 @@
+---
+title: "test_ggplot"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r librairies}
+library(sf)
+library(ggplot2)
+library(mapview)
+library(cowplot)
+```
+
+```{r cars}
+library(sf)
+library(ggplot2)
+library(mapview)
+library(cowplot)
+
+# create sample data
+data <- data.frame(
+  Name = c("City A", "City B", "City C"),
+  Value = c(10, 20, 30),
+  geometry = st_sfc(st_point(c(-73.935242, 40.730610)), 
+                    st_point(c(-74.005941, 40.712776)), 
+                    st_point(c(-73.986613, 40.748817)))
+)
+
+# convert to sf object
+sf_data <- st_as_sf(data)
+
+# create the ggplot map
+ggplot_map <- ggplot2::ggplot(sf_data) +
+  geom_sf(ggplot2::aes(fill = Value, geometry = geometry)) +
+  geom_sf_text(ggplot2::aes(label = Name), size = 4, color = "white", fontface = "bold")
+
+# create the mapview map
+mv_map <- mapview::mapview(sf_data, zcol = "Value", col.regions = "blue")
+
+# display both plots side by side
+plot_grid(list(ggplot_map, mv_map), ncol = 2, align = "h", axis = "tb")
+
+
+```
